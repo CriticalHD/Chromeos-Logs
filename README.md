@@ -7,7 +7,7 @@ https://docs.google.com/document/d/1OwQmhHgXSHYIVOWZ-SdAESnPzJn2sFt7y6L5EV2hqY8/
 # Logs
 
 These are all reproducible!
-Log #1
+## Log #1
 
 Issue : Dev mode boot loop
 
@@ -17,7 +17,8 @@ Details : A boot loop of the recovery indicating “Your system is repairing”
 Who : Me and my friend
 Object : His Chromebook
 Feelings after : This is way too easy to reproduce
-Log : 
+
+### Log : 
 
 I went into the recovery screen and did ctrl-d, this brought me to it being rejected, I then returned to secure mode and on the returning to vboot mode I did an EC reset. This brought me to the repair screen. After this I re-entered recovery mode and did ctrl-d once more, then I returned to secure mode, but it said it was being repaired. I proceeded to try entering the VT-3 shell (don’t ask why). The screen reset, I didn't know why, I thought it was my key binds, but it was unnaturally timed, I then removed my hands from the keyboard then discovered it kept boot looping. Saying “repairing” then closing the screen and reopening it to the same message over and over. I found out that re-entering developer mode or doing an EC or matter of fact any key bind that resets your chrome would lead to the same thing. This intrigued me because it could potentially be a brick or another way to unenroll. Currently, I am doing internet recovery (old) to prevent a Kernver update (I think).
 After recovering with internet, I logged in and went through… enrollment… as normal, but when putting our password, we got the bug of “could not mount cryptohome”. Now I've gotten this before, but then I was a gigantic skid. I know now that “could not mount cryptohome” is a tpm error or such, which made me happy.
@@ -35,7 +36,7 @@ Extra : Honestly this was kind of funny, I guess it made me think, can I do this
 
 
 
-Log #2
+## Log #2
 
 Issue : Weird powerwash
 
@@ -45,7 +46,8 @@ Details : Powerwash and revert option available in oobe and glitches when trying
 Who : Me
 Object : My chromebook
 Feelings after : Yeah ts is hard to reproduce, I was surprised a crosbreaker dev never saw that
-Log : 
+
+### Log : 
 
 Alright, to start. After messing around in recovery mode for like a good 30-45 minutes I exited and went back to OOBE. I wanted to try sh1ttyexec on v144 k7 (I know ok? Don't question my antics) I proceeded and it didn't work, so I went to the recovery screen and did a devmode powerwash. After that I went back to secure mode and tried a standalone powerwash, one remark was my ability to powerwash and revert, I was quite intrigued because it wasn't in my book to see something like this. Normally you’d only be able to powerwash and revert while in demo mode. Next best thing? Try it, and that followed quite unexpectedly too, ngl it took a while to actually “powerwash”. Once it was gonna powerwash and revert I was told that an error had happened and it just couldn’t? The button following this error was just a cancel so I retried to powerwash and revert and it worked, surprisingly… Oh you know I was kinda hoping this meant something broke and my incessant messing with recovery mode caused it. Steps to reproduce are literally unknown to me, mb gng.
 
@@ -60,7 +62,7 @@ Extra : This felt less shocking and scary than the boot loop but somewhat more p
 
 
 
-Log #3
+## Log #3
 
 Issue : Ui freeze ?
 
@@ -70,7 +72,8 @@ Details : ChromeOS ui just gave out on me and became completely unresponsive
 Who : Me
 Object : My chromebook
 Feelings after : Never in a million years will this happen again (It did literally the next day)
-Log : 
+
+### Log : 
 
 Ok, this one's gonna be really short because there isn't much to talk about. While messing in recovery mode, I entered internet recovery (old) and somehow, someway the entire ui just froze and became unresponsive. Now this is probably your typical ChromeOS bug. I was actually worried when trying to reenter recovery mode (via keybinds) didn’t work. Doing an EC reset sealed the deal tho. Now to reproduce this would be to pray for 100k to appear on your bed, this is completely random and mostly has nothing to do with my shenanigans. Simply a visual bug right? Well not quite, I opened the debug logs and found out my TPM had failed?! 1/200 lol… well that was quite the revelation I don't really think that was just a normal ui freeze tho I couldn't tell much more about it. 
 
@@ -91,7 +94,7 @@ I saw on reddit some guy got absolutely cooked after 200 tries 😦
 
 
 
-Log #4
+## Log #4
 
 Issue : Managed Icon crashing
 
@@ -101,7 +104,8 @@ Details : When clicking the managed by (school) icon it crashes and loads after 
 Who : Me
 Object : My chromebook
 Feelings after : Pretty cool, has a few results that can happen from this
-Log : 
+
+### Log : 
 
 Ok my first feelings about this was like… just a simple crash. But when repeated multiple times it can give a variety of results, like when you do it a lot of times it might stay fully black and the screen just doesn't respond but the backlight stays on. Another might be when it does an ec reset, somehow… Well I figured this out a long time ago but I brought it up now and now I'm logging it! Since there isn't much to talk about this “bug” , I'll cut to the part where I explain how to reproduce. This has a 100% consistency to get to it, first is to do the first part of sh1ttyexec on a newer version (144≥) specifically the powerwash part. If done correctly there shouldn't be any managed by icon at first glance. But if you look in the bottom right corner and press the menu, the managed by… icon should appear. This icon is really buggy, because if you press it then it would crash and appear a few seconds later. If repeated a few times, varying results can occur.
 
@@ -122,7 +126,7 @@ Extra : This is neat. I love finding small insignificant bugs like these, like e
 
 
 
-Log #5
+## Log #5
 
 Issue : Special Enrollment error
 
@@ -132,7 +136,8 @@ Details : Unknown error caused by ruining oobe
 Who : Me
 Object : My chromebook
 Feelings after : Literally no use and not even a bug lol, ok maybe.
-Log : 
+
+### Log : 
 
 Yeah this is not even a bug, well why not talk about it? First of all this is basically incorporating the personal account feature and the first part of sh1ttyexec. Actually, do log 4 to get here. So this was kinda cool. I was hoping to get more out of it, but who am I kidding literally nobody ever saw this bug. Welp.. steps to reproduce, first powerwash then get to the get started screen. After that, powerwash (don't actually)  right when it says enrolling. If done correctly you enter the bugged oobe, steps after that is to enrol again but disable wifi right as it says enrolling, this is very hard to do and has a short window of time, to restart just click the managed icon. If done correctly you can now go to a personal account. Do that and enroll with your personal account and the bug should appear !
 
